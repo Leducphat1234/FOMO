@@ -457,9 +457,14 @@ async function updateCounter() {
     const j = await resp.json();
     // assuming the API returns something like { "data": 123 }
     const count = j.data;
+    window.count = count;
     console.log(count);
   } catch (err) {
     console.error('Counter error:', err);
   }
+  window.workspace = workspace;
+  window.key = key;
+  window.upUrl = upUrl;
+  window.getUrl = getUrl;
 }
 updateCounter();
