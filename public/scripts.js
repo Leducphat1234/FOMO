@@ -444,8 +444,8 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
 });
 
 // code below is showing visitor
-const counter = new Counter({ workspace: 'my-workspace' });
-counter.up('page-views')
+const counter = new Counter({ workspace: 'fomo' });
+counter.up('page-view-fomo')
   .then(result => {
     document.getElementById('counter').textContent = result.value;
   })
