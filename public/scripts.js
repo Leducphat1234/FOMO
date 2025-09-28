@@ -443,11 +443,15 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
   }
 });
 
+/**
+ * The code below create a global variable named `visitors`
+ */
+console.log(visitors);
+
 // code below is showing visitor
 const counter = new Counter({ workspace: 'fomo' });
 counter.up('page-view-fomo')
   .then(result => {
-    console.log(result);
     window.visitors = result;
   })
   .catch(err => console.error('Counter error:', err));
