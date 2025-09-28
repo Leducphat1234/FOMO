@@ -444,20 +444,11 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
 });
 
 // code below is showing visitor
-import { Counter } from 'counterapi';
-
-const counter = new Counter({
-  workspace: 'fomo',   // must match your workspace
-  debug: false,
-  timeout: 5000,
-  accessToken: 'ut_msAMqFp03UCptWrwxRMrxBoIEiKVxCeybVLqgIo3'  // for V2, write operations may require token
-});
-
-// To increment (up)
-const result = await counter.up('page-view-fomo');
-console.log(result.value);
-
-// To get value (read)
-const get = await counter.get('page-view-fomo');
-window.get = get;
-console.log(get.value);
+import { Counter } from 'https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js';
+const counter = new Counter({ workspace: 'my-workspace' });
+counter.up('page-views')
+  .then(res => {
+    console.log(res.value);
+    window.visitors = res.value;
+  })
+  .catch(err => console.error('Counter error:', err.message));
