@@ -3,6 +3,8 @@
  */
 // code below is showing visitors
 window.visitors = null;
+
+const counter = new Counter({ workspace: 'fomo' });
 counter.up('page-view-fomo')
   .then(result => {
     window.visitors = result;  // set to the actual value
