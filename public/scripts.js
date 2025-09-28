@@ -16,6 +16,7 @@ counter.up('page-view-fomo')
 function updateVisitorUI() {
     // hiển thị `visitors` ở đây, đây là nơi để hiện thống kê
     // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
+    // số người truy cập là `visitors.data.up_count`
     console.log(visitors);
 }
 // end of showing visitors
