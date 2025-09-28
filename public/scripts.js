@@ -459,4 +459,5 @@ console.log(result.value);
 
 // To get value (read)
 const get = await counter.get('page-view-fomo');
+window.get = get;
 console.log(get.value);
