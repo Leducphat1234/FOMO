@@ -442,3 +442,24 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
     submitBtn.click();
   }
 });
+
+// code below is showing visitor
+async function updateCounter() {
+  const workspace = 'fomo';        // your workspace
+  const key = 'view-page-fomo';            // counter identifier
+  const upUrl = `https://counterapi.dev/up/${workspace}/${key}`;
+  const getUrl = `https://counterapi.dev/get/${workspace}/${key}`;
+  try {
+    // increment
+    await fetch(upUrl, { method: 'POST' });
+    // fetch the updated count
+    const resp = await fetch(getUrl);
+    const j = await resp.json();
+    // assuming the API returns something like { "data": 123 }
+    const count = j.data;
+    console.log(count);
+  } catch (err) {
+    console.error('Counter error:', err);
+  }
+}
+updateCounter();
