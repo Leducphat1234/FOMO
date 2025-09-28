@@ -448,7 +448,7 @@ const counter = new Counter({ workspace: 'fomo' });
 counter.up('page-view-fomo')
   .then(result => {
     console.log(result.value);
-    window.visitor = result.value;
+    window.visitors = result.value;
   })
   .catch(err => console.error('Counter error:', err));
 
