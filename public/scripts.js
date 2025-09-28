@@ -18,6 +18,7 @@ function updateVisitorUI() {
     // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
     // số người truy cập là `visitors.data.up_count`
     console.log(visitors);
+    document.getElementById("visitors").innerText = visitors.data.up_count;
 }
 // end of showing visitors
 
