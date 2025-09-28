@@ -2,14 +2,17 @@
  * The code below create a global variable named `visitors`
  */
 
-// code below is showing visitor
-const counter = new Counter({ workspace: 'fomo' });
-counter.up('page-view-fomo')
-.then(result => {
-    window.visitors = result;
-})
-.catch(err => console.error('Counter error:', err));
+// code below is showing visitors
+async function countVisitors() {
+    const counter = new Counter({ workspace: 'fomo' });
+    await counter.up('page-view-fomo').then(result => {
+        window.visitors = result;
+    }).catch(err => console.error('Counter error:', err));
+}
+countVisitors();
 console.log(visitors);
+// end of showing visitors
+
 
 // Vẽ biểu đồ cột mức độ FOMO
 window.addEventListener('DOMContentLoaded', function() {
