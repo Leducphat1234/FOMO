@@ -1,3 +1,16 @@
+/**
+ * The code below create a global variable named `visitors`
+ */
+console.log(visitors);
+
+// code below is showing visitor
+const counter = new Counter({ workspace: 'fomo' });
+counter.up('page-view-fomo')
+  .then(result => {
+    window.visitors = result;
+  })
+  .catch(err => console.error('Counter error:', err));
+
 // Vẽ biểu đồ cột mức độ FOMO
 window.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById('fomoChart');
@@ -442,17 +455,3 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
     submitBtn.click();
   }
 });
-
-/**
- * The code below create a global variable named `visitors`
- */
-console.log(visitors);
-
-// code below is showing visitor
-const counter = new Counter({ workspace: 'fomo' });
-counter.up('page-view-fomo')
-  .then(result => {
-    window.visitors = result;
-  })
-  .catch(err => console.error('Counter error:', err));
-
