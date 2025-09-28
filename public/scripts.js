@@ -1,16 +1,21 @@
 /**
  * The code below create a global variable named `visitors`
  */
-
 // code below is showing visitors
-async function countVisitors() {
-    const counter = new Counter({ workspace: 'fomo' });
-    await counter.up('page-view-fomo').then(result => {
-        window.visitors = result;
-    }).catch(err => console.error('Counter error:', err));
+window.visitors = null;
+counter.up('page-view-fomo')
+  .then(result => {
+    window.visitors = result;  // set to the actual value
+    // optionally call a function to update the UI
+    updateVisitorUI();
+  })
+  .catch(err => console.error('Counter error:', err));
+
+function updateVisitorUI() {
+    // hiển thị `visitors` ở đây, đây là nơi để hiện thống kê
+    // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
+    console.log(visitors);
 }
-countVisitors();
-console.log(visitors);
 // end of showing visitors
 
 
