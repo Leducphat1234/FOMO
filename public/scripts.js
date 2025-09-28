@@ -447,7 +447,8 @@ document.getElementById('quiz-form').addEventListener('keydown', (e)=>{
 const counter = new Counter({ workspace: 'fomo' });
 counter.up('page-view-fomo')
   .then(result => {
-    document.getElementById('counter').textContent = result.value;
+    console.log(result.value);
+    window.visitor = result.value;
   })
   .catch(err => console.error('Counter error:', err));
 
