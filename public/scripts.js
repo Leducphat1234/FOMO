@@ -35,7 +35,6 @@ async function updateDoerUI() {
   doers_low = await counter.get(key_submit_click[0]);
   doers_medium = await counter.get(key_submit_click[1]);
   doers_high = await counter.get(key_submit_click[2]);
-  console.log(doers_low);
   doers = doers_low.data.up_count + doers_medium.data.up_count + doers_high.data.up_count;
   console.log(doers);
   document.getElementById("survey-doers").innerText = doers;
