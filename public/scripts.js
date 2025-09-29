@@ -35,9 +35,12 @@ async function updateDoerUI() {
   doers_low = await counter.get(key_submit_click[0]);
   doers_medium = await counter.get(key_submit_click[1]);
   doers_high = await counter.get(key_submit_click[2]);
-  console.log(doers);
-  document.getElementById("survey-doers").innerText = doers.data.up_count;
+  console.log(doers_low);
+  // doers = doers_low + doers_medium + doers_high;
+  // console.log(doers);
+  // document.getElementById("survey-doers").innerText = doers;
 }
+updateDoerUI();
 
 // Vẽ biểu đồ cột mức độ FOMO
 window.addEventListener('DOMContentLoaded', function() {
