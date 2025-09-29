@@ -18,6 +18,7 @@ header{
   background:var(--nav-bg);padding:12px 16px;
   box-shadow:0 2px 8px rgba(2,8,23,0.12);
   display:flex;align-items:center;justify-content:center;gap:28px;
+  
 }
 .brand{color:#fff;font-weight:700;font-size:18px;margin-right:12px}
 nav{display:flex;gap:12px;align-items:center}
