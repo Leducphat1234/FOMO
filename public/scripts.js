@@ -41,13 +41,17 @@ async function updateDoerUI() {
 }
 
 // Vẽ biểu đồ cột mức độ FOMO
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', async function() {
   var canvas = document.getElementById('fomoChart');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   // Dữ liệu
   var labels = ['Thấp', 'Trung bình', 'Cao'];
-  var values = [12, 37, 51];
+  await updateDoerUI();
+  let ratio_low = Math.round(doers_low.data.up_count/doers * 10000)/100;
+  let ratio_medium = Math.round(doers_medium.data.up_count/doers * 10000)/100;
+  let ratio_high = Math.round(doers_high.data.up_count/doers * 10000)/100;
+  var values = [ratio_low, ratio_medium, ratio_high];
   var colors = [
     'linear-gradient(180deg,#4caf50 60%,#388e3c 100%)',
     'linear-gradient(180deg,#ffd54f 60%,#ff9800 100%)',
