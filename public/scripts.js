@@ -398,6 +398,8 @@ const clearBtn = document.getElementById('clearBtn');
 const resultArea = document.getElementById('result-area');
 
 submitBtn.addEventListener('click', ()=>{
+  // not dupicated
+  if (resultArea.style.display == 'block') return;
   // collect answers
   const unanswered = [];
   let total = 0;
