@@ -39,7 +39,6 @@ async function updateDoerUI() {
   console.log(doers);
   document.getElementById("survey-doers").innerText = doers;
 }
-updateDoerUI();
 
 // Vẽ biểu đồ cột mức độ FOMO
 window.addEventListener('DOMContentLoaded', function() {
@@ -185,6 +184,9 @@ navLinks.forEach(a=>{
   a.addEventListener('click', e=>{
     const key = a.dataset.target;
     showSectionByKey(key);
+    if (key == 'thongke') {
+      updateDoerUI();
+    }
   });
 });
 
