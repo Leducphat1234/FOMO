@@ -1,27 +1,43 @@
 /**
- * The code below create a global variable named `visitors`
+ * The code below create 2 global variables named `visitors`
+ * and `doers`, this one gets infomation in submit button event listener
  */
 // code below is showing visitors
 window.visitors = null;
+window.doers = null;
+window.doers_low = null;
+window.doers_medium = null;
+window.doers_high = null;
 
-const counter = new Counter({ workspace: 'fomo' });
-counter.up('page-view-fomo')
+const ws = 'fomo';
+const key_visitor = 'page-view-fomo';
+const key_submit_click = ['click-submit-low-fomo', 'click-submit-medium-fomo', 'click-submit-high-fomo'];
+
+const counter = new Counter({ workspace: ws });
+counter.up(key_visitor)
   .then(result => {
     window.visitors = result;  // set to the actual value
     // optionally call a function to update the UI
     updateVisitorUI();
   })
-  .catch(err => console.error('Counter error:', err));
+  .catch(err => console.error('Counter error (visitors):', err));
 
 function updateVisitorUI() {
-    // hiển thị `visitors` ở đây, đây là nơi để hiện thống kê
-    // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
-    // số người truy cập là `visitors.data.up_count`
-    console.log(visitors);
-    document.getElementById("visitors").innerText = visitors.data.up_count;
+  // hiển thị `visitors` ở đây, đây là nơi để hiện thống kê
+  // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
+  // số người truy cập là `visitors.data.up_count`
+  console.log(visitors);
+  document.getElementById("visitors").innerText = visitors.data.up_count;
 }
 // end of showing visitors
 
+async function updateDoerUI() {
+  doers_low = await counter.get(key_submit_click[0]);
+  doers_medium = await counter.get(key_submit_click[1]);
+  doers_high = await counter.get(key_submit_click[2]);
+  console.log(doers);
+  document.getElementById("survey-doers").innerText = doers.data.up_count;
+}
 
 // Vẽ biểu đồ cột mức độ FOMO
 window.addEventListener('DOMContentLoaded', function() {
@@ -401,14 +417,18 @@ submitBtn.addEventListener('click', ()=>{
   // We'll use: 30-50 low, 51-85 medium, 86-120 high
   let levelText = "";
   let advice = "";
+  let level = 0;
   if(total <= 50){
     levelText = "Mức độ FOMO: Thấp";
+    level = 0;
     advice = "Bạn kiểm soát tốt xu hướng FOMO. Tiếp tục duy trì thói quen lành mạnh: cân bằng thời gian online và offline, và giữ mối quan hệ trực tiếp với bạn bè.";
   } else if(total <= 85){
     levelText = "Mức độ FOMO: Trung bình";
+    level = 1;
     advice = "Bạn có dấu hiệu FOMO. Hãy thử giảm thời gian lướt mạng, đặt giới hạn thông báo, và dành thời gian cho hoạt động ngoại khóa, giao tiếp trực tiếp.";
   } else {
     levelText = "Mức độ FOMO: Cao";
+    level = 2;
     advice = "FOMO đang khá ảnh hưởng. Nên tìm sự hỗ trợ: trò chuyện với gia đình hoặc thầy cô, thử các kỹ thuật quản lý thời gian và cân nhắc tư vấn tâm lý nếu cần.";
   }
 
@@ -451,6 +471,14 @@ submitBtn.addEventListener('click', ()=>{
 
   // Scroll to result
   resultArea.scrollIntoView({behavior:'smooth', block:'center'});
+  // Dòng dưới đây nhận số lượng người khảo sát
+  // Get number of doers
+  counter.up(key_submit_click[level]).then(result => {
+    if (level == 0) window.doers_low = result;
+    if (level == 1) window.doers_medium = result;
+    if (level == 2) window.doers_high = result;
+    updateDoerUI();
+  }).catch(err => console.error('Counter error (doers):', err))
 });
 
 /* Clear - reset form */
