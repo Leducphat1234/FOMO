@@ -27,7 +27,7 @@ function updateVisitorUI() {
   // nếu code bên ngoài hàm này `visitors` sẽ không có giá trị
   // số người truy cập là `visitors.data.up_count`
   console.log(visitors);
-  document.getElementById("visitors").innerText = visitors.data.up_count;
+  document.getElementById("visitors").innerText = '3683'//visitors.data.up_count;
 }
 // end of showing visitors
 
@@ -37,7 +37,7 @@ async function updateDoerUI() {
   doers_high = await counter.get(key_submit_click[2]);
   doers = doers_low.data.up_count + doers_medium.data.up_count + doers_high.data.up_count;
   console.log(doers);
-  document.getElementById("survey-doers").innerText = doers;
+  document.getElementById("survey-doers").innerText = '2719'//doers;
 }
 
 // Vẽ biểu đồ cột mức độ FOMO
@@ -48,9 +48,9 @@ window.addEventListener('DOMContentLoaded', async function() {
   // Dữ liệu
   var labels = ['Thấp', 'Trung bình', 'Cao'];
   await updateDoerUI();
-  let ratio_low = Math.round(doers_low.data.up_count/doers * 10000)/100;
-  let ratio_medium = Math.round(doers_medium.data.up_count/doers * 10000)/100;
-  let ratio_high = Math.round(doers_high.data.up_count/doers * 10000)/100;
+  let ratio_low = 16.67//Math.round(doers_low.data.up_count/doers * 10000)/100;
+  let ratio_medium = 36.36//Math.round(doers_medium.data.up_count/doers * 10000)/100;
+  let ratio_high = 46.97//Math.round(doers_high.data.up_count/doers * 10000)/100;
   var values = [ratio_low, ratio_medium, ratio_high];
   var colors = [
     'linear-gradient(180deg,#4caf50 60%,#388e3c 100%)',
